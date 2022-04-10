@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="final_project">Projet final</string>
+    <string name="home">Ecran d\'accueil</string>
+    <string name="saved">Articles enregistrés</string>
+    <string name="exit">Sortie</string>
+    <string name="search">Chercher</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="help">Aider</string>
+    <string name="help_main">Entrez la valeur de recherche et appuyez sur le bouton</string>
+    <string name="editText_hint">Écrivez ici</string>
+    <string name="dialog_title">Aider</string>
+    <string name="help_search_news">Appuyez sur l\'élément de la liste pour voir plus d\'informations</string>
+
+    <string name="help_details">appuyez sur X pour revenir à la page précédente,\n
+        appuyez sur AMOUR pour enregistrer dans vos favoris,\n
+        appuyez sur "Lire en ligne" pour parcourir la page</string>
+</resources>

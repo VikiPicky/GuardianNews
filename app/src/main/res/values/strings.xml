@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name" translatable="false">GuardianNewsLast</string>
+    <string name="final_project">Final Project</string>
+    <string name="home">Home</string>
+    <string name="saved">Saved Articles</string>
+    <string name="exit">Exit</string>
+    <string name="search">Search</string>
+    <string name="welcome">Welcome</string>
+    <string name="help">Help</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="editText_hint">Type here</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="dialog_title">Help</string>
+    <string name="help_main">Input search value and press button</string>
+    <string name="help_search_news">Press list item to see more info</string>
+    <string name="help_details">press X to return to previous Page, \npress LOVE to save to favourite, \npress "Read Online" to browse the page</string>
+</resources>
