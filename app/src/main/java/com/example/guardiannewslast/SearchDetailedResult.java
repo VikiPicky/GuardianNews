@@ -32,7 +32,8 @@ public class SearchDetailedResult extends AppCompatActivity {
         String url = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra("title");
         String section = getIntent().getStringExtra("section");
-        String date = getIntent().getStringExtra("date");
+        String newdate = getIntent().getStringExtra("date");
+        String date = newdate.substring(0, 10);
 
         likeNews(url, title, section, date);
 

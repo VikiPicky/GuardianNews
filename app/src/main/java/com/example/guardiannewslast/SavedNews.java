@@ -30,7 +30,6 @@ public class SavedNews extends AppCompatActivity {
     private ListView listView;
     private MyTitleAdapter news_items_Adapter;
     private ArrayList<Article> news_items = new ArrayList<>();
-    SQLiteDatabase sqLiteDatabase;
 
 
     @Override
@@ -60,6 +59,8 @@ public class SavedNews extends AppCompatActivity {
             newRowValues.put(DatabaseOpener.COLUMN_Date, date);
             newRowValues.put(DatabaseOpener.COLUMN_URL, url);
 
+            DatabaseOpener dbOpener = new DatabaseOpener(this);
+            SQLiteDatabase sqLiteDatabase = dbOpener.getWritableDatabase();
             long newID = sqLiteDatabase.insert(DatabaseOpener.DATABASE_TABLE, null, newRowValues);
             //create object
             Article likedItem = new Article(newID, title, section, date, url);
@@ -71,7 +72,7 @@ public class SavedNews extends AppCompatActivity {
         Toast.makeText(this, R.string.article_saved, Toast.LENGTH_LONG).show();
 
         dialogCall();
-        openDetails();
+     //   openDetails();
     }
 
     private class MyTitleAdapter extends BaseAdapter {
@@ -138,7 +139,7 @@ public class SavedNews extends AppCompatActivity {
 
     protected void deleteContact(Article article) {
         DatabaseOpener dbOpener = new DatabaseOpener(this);
-        sqLiteDatabase = dbOpener.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = dbOpener.getWritableDatabase();
 
         try {
             int result = sqLiteDatabase.delete(DatabaseOpener.DATABASE_TABLE, DatabaseOpener.COLUMN_ID + "= ?", new String[]{Long.toString(article.getId())});
@@ -176,19 +177,19 @@ public class SavedNews extends AppCompatActivity {
         return true;
     }
 
-    public void openDetails() {
+/*    public void openDetails() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Article selectedArticle = news_items.get(position);
                 String title = selectedArticle.getTitle();
-                String date = selectedArticle.getDate();
-                String url = selectedArticle.getUrl();
                 String section = selectedArticle.getSection();
+                String url = selectedArticle.getUrl();
+                String date = selectedArticle.getDate();
 
-                Intent intent = new Intent(SavedNews.this, SavedArticleDetailedView.class);
 
+                Intent intent = new Intent(SavedNews.this, SearchDetailedResult.class);
 
                 intent.putExtra("url", url);
                 intent.putExtra("title", title);
@@ -197,7 +198,7 @@ public class SavedNews extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+    }*/
 
     //create dialog on ListView long click to remove article from DB
 
