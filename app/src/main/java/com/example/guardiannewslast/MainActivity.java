@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.item_saved:
-        /*        intent = new Intent(MainActivity.this, SavedNews.class);
+                intent = new Intent(MainActivity.this, SavedNews.class);
                 startActivity(intent);
-                drawerLayout.closeDrawer(GravityCompat.START);*/
+                drawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.item_exit:
                 finishAffinity();

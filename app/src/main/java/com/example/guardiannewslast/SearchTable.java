@@ -1,7 +1,5 @@
 package com.example.guardiannewslast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,12 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
-import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -198,7 +193,9 @@ public class SearchTable extends AppCompatActivity {
                     String currentTitle = NewsList.get(position).get("webTitle");
                     String currentSection = NewsList.get(position).get("sectionName");
                     String currentDate = NewsList.get(position).get("webPublicationDate");
+
                     Intent intent = new Intent(SearchTable.this, SearchDetailedResult.class);
+
 
                     intent.putExtra("url", currentUrl);
                     intent.putExtra("title", currentTitle);
@@ -207,6 +204,8 @@ public class SearchTable extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+
         }
     }
 }

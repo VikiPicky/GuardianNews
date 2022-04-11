@@ -15,4 +15,13 @@
     <string name="help_details">appuyez sur X pour revenir à la page précédente,\n
         appuyez sur AMOUR pour enregistrer dans vos favoris,\n
         appuyez sur "Lire en ligne" pour parcourir la page</string>
+
+    <string name="dialog_help_saved_news">Cliquez sur l\'élément de la liste pour ouvrir les détails \n
+        ou
+        \n cliquez longuement pour supprimer de Enregistré</string>
+    <string name="article_saved">Article enregistré dans les favoris</string>
+    <string name="dialog_delete_saved_article">Voulez-vous supprimer cet article ?</string>
+    <string name="dialog_yes">Oui</string>
+    <string name="dialog_no">Non</string>
+    <string name="dialog_article_deleted">Article supprimé</string>
 </resources>

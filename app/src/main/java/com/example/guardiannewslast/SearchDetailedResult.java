@@ -1,7 +1,5 @@
 package com.example.guardiannewslast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,11 +12,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import com.google.android.material.navigation.NavigationView;
 
 public class SearchDetailedResult extends AppCompatActivity {
 
@@ -32,11 +27,14 @@ public class SearchDetailedResult extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         Intent intent = getIntent();
         String url = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra("title");
         String section = getIntent().getStringExtra("section");
         String date = getIntent().getStringExtra("date");
+
+        likeNews(url, title, section, date);
 
         TextView textViewTitle = (TextView) findViewById(R.id.textViewTitle);
         textViewTitle.setText(title);
@@ -64,6 +62,23 @@ public class SearchDetailedResult extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void likeNews(String url, String title, String section, String date) {
+        ImageButton buttonLike = (ImageButton) findViewById(R.id.icon_love);
+        buttonLike.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Intent intent = new Intent(SearchDetailedResult.this, SavedNews.class);
+
+                intent.putExtra("url", url);
+                intent.putExtra("title", title);
+                intent.putExtra("section", section);
+                intent.putExtra("date", date);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -92,5 +107,7 @@ public class SearchDetailedResult extends AppCompatActivity {
         }
         return true;
     }
+
+
 }
 

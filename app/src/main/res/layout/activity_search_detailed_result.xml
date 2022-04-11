@@ -8,6 +8,14 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="17dp">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textViewSection"
@@ -18,7 +26,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDate"
+        android:gravity="left"
+        android:textAlignment="gravity"/>
 
 
     <TextView
@@ -33,15 +43,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_close" />
+        app:layout_constraintTop_toBottomOf="@+id/icon_close"
+        android:gravity="left"
+        android:textAlignment="gravity"/>
 
     <ImageButton
         android:id="@+id/icon_close"
         android:layout_width="56dp"
         android:layout_height="53dp"
-
         android:layout_marginTop="92dp"
-
         android:scaleType="fitXY"
         android:src="@drawable/close"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +93,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        android:gravity="left"
+        android:textAlignment="gravity"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
