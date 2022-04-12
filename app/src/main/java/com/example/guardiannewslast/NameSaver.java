@@ -57,6 +57,8 @@ public class NameSaver extends AppCompatActivity {
                 editText.setText("");
 
                 Toast.makeText(NameSaver.this, R.string.name_saved, Toast.LENGTH_SHORT).show();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.name_fragment, new BlankFragment()).commit();
             }
         });
     }
