@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GuardianNewsLast">
         <activity
+            android:name=".SavedNewsDetails"
+            android:exported="false" />
+        <activity
             android:name=".SavedNews"
             android:exported="false" />
         <activity

@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,7 +73,7 @@ public class SavedNews extends AppCompatActivity {
         Toast.makeText(this, R.string.article_saved, Toast.LENGTH_LONG).show();
 
         dialogCall();
-     //   openDetails();
+        openDetails();
     }
 
     private class MyTitleAdapter extends BaseAdapter {
@@ -177,7 +178,7 @@ public class SavedNews extends AppCompatActivity {
         return true;
     }
 
-/*    public void openDetails() {
+    public void openDetails() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -189,16 +190,19 @@ public class SavedNews extends AppCompatActivity {
                 String date = selectedArticle.getDate();
 
 
-                Intent intent = new Intent(SavedNews.this, SearchDetailedResult.class);
+                Intent intent = new Intent(SavedNews.this, SavedNewsDetails.class);
 
                 intent.putExtra("url", url);
                 intent.putExtra("title", title);
                 intent.putExtra("section", section);
                 intent.putExtra("date", date);
                 startActivity(intent);
+
             }
         });
-    }*/
+    }
+
+
 
     //create dialog on ListView long click to remove article from DB
 

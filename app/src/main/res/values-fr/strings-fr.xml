@@ -24,4 +24,5 @@
     <string name="dialog_yes">Oui</string>
     <string name="dialog_no">Non</string>
     <string name="dialog_article_deleted">Article supprimé</string>
+    <string name="help_details_small">Press X to close, press Internet to view in browser</string>
 </resources>

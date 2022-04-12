@@ -24,4 +24,5 @@
     <string name="dialog_no">No</string>
     <string name="dialog_article_deleted">Article deleted</string>
     <string name="dialog_retrun">Closed</string>
+    <string name="help_details_small">Appuyez sur X pour fermer, \n appuyez sur Internet pour afficher dans le navigateur</string>
 </resources>
