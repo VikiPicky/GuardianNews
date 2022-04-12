@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 public class SavedNews extends AppCompatActivity {
@@ -207,11 +209,13 @@ public class SavedNews extends AppCompatActivity {
     //create dialog on ListView long click to remove article from DB
 
     public void dialogCall() {
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                Article selectedArticle = news_items.get(position);
+               Article selectedArticle = news_items.get(position);
+               Article removedArticle = news_items.get(position);
+
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(SavedNews.this);
                 alertDialog.setTitle((String) getString(R.string.dialog_delete_saved_article));
 
@@ -224,8 +228,15 @@ public class SavedNews extends AppCompatActivity {
                         deleteContact(selectedArticle);
                         news_items_Adapter.notifyDataSetChanged();
 
-                        Toast.makeText(SavedNews.this, R.string.dialog_article_deleted, Toast.LENGTH_SHORT).show();
-
+                        Snackbar.make(listView, R.string.snackbar_action, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_undo, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                news_items.add(removedArticle);
+                                news_items_Adapter.notifyDataSetChanged();
+                                Snackbar.make(listView, R.string.snackbar_restored, Snackbar.LENGTH_LONG).show();
+                            }
+                        }).show();
                     }
                 });
 
@@ -233,7 +244,7 @@ public class SavedNews extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
-                        Toast.makeText(SavedNews.this, R.string.dialog_retrun, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SavedNews.this, R.string.dialog_retrun, Toast.LENGTH_LONG).show();
                     }
                 });
                 alertDialog.create().show();

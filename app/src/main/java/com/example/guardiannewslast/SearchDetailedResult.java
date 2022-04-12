@@ -24,6 +24,8 @@ public class SearchDetailedResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detailed_result);
 
+        setTitle("DetailedResult 1.0");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

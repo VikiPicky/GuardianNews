@@ -24,5 +24,11 @@
     <string name="dialog_yes">Oui</string>
     <string name="dialog_no">Non</string>
     <string name="dialog_article_deleted">Article supprimé</string>
-    <string name="help_details_small">Press X to close, press Internet to view in browser</string>
+    <string name="dialog_retrun">Ferme</string>
+    <string name="help_details_small">Appuyez sur X pour fermer, \n appuyez sur Internet pour afficher dans le navigateur</string>
+    <string name="activity_closed">Il y a plus à découvrir</string>
+    <string name="snackbar_action">Annuler</string>
+    <string name="snackbar_undo">Article supprimé</string>
+    <string name="snackbar_restored">Article restauré</string>
+
 </resources>

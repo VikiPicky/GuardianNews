@@ -24,5 +24,12 @@
     <string name="dialog_no">No</string>
     <string name="dialog_article_deleted">Article deleted</string>
     <string name="dialog_retrun">Closed</string>
-    <string name="help_details_small">Appuyez sur X pour fermer, \n appuyez sur Internet pour afficher dans le navigateur</string>
+
+    <string name="help_details_small">Press X to close, press Internet to view in browser</string>
+    <string name="activity_closed">There is more to discover</string>
+    <string name="snackbar_action">Article deleted</string>
+    <string name="snackbar_undo">Undo</string>
+    <string name="snackbar_restored">Article restored</string>
+
+    activity_closed
 </resources>
