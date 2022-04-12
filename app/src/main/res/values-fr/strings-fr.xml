@@ -27,8 +27,17 @@
     <string name="dialog_retrun">Ferme</string>
     <string name="help_details_small">Appuyez sur X pour fermer, \n appuyez sur Internet pour afficher dans le navigateur</string>
     <string name="activity_closed">Il y a plus à découvrir</string>
-    <string name="snackbar_action">Annuler</string>
-    <string name="snackbar_undo">Article supprimé</string>
+    <string name="snackbar_action">Article supprimé</string>
+    <string name="snackbar_undo">Annuler</string>
     <string name="snackbar_restored">Article restauré</string>
+    <string name="name_saver">Nomme-moi</string>
+    <string name="say_your_name">Bonjour, je suis Guardian NewsReader, comment voulez-vous m\'appeler?</string>
+    <string name="save">Préférences de l\'utilisateur</string>
+    <string name="name_save">Sauver</string>
 
+    <string name="help_nameSaver">Tapez mon nouveau nom ici et appuyez sur ENREGISTRER</string>
+    <string name="name_saved">Nom enregistré</string>
+
+    <string name="greeting">Salut! Je suis</string>
+    <string name="greeting2">Ravi de vous rencontrer!</string>
 </resources>

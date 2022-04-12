@@ -30,6 +30,24 @@
     <string name="snackbar_action">Article deleted</string>
     <string name="snackbar_undo">Undo</string>
     <string name="snackbar_restored">Article restored</string>
+    <string name="name_saver">Name Me</string>
+    <string name="say_your_name">Hi, I am GuardianNewsReader, how do you want to call me?</string>
+    <string name="save">User Preferences</string>
+    <string name="name_save">SAVE</string>
 
-    activity_closed
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="help_nameSaver">Type my new name here and press SAVE</string>
+    <string name="name_saved">Name saved</string>
+
+    <string name="greeting">Name saved</string>
+    <string name="greeting2">Name saved</string>
+
+
 </resources>

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_name_saver.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_saved_article_detailed_view.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_saved_news.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_saved_news_details.xml" value="0.36302083333333335" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/activity_search_table.xml" value="0.18005540166204986" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/fragment_search_news.xml" value="0.1" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/fragment_search_result.xml" value="0.36302083333333335" />
+        <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/fragment_shared_preferences.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/list_view_row_layout.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/listview_search_results.xml" value="0.1" />
         <entry key="..\:/Users/victo/Desktop/Algonquin/GuardianNewsLast/app/src/main/res/layout/nav_header.xml" value="0.36302083333333335" />

@@ -1,6 +1,5 @@
 package com.example.guardiannewslast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -96,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.item_saved:
                 intent = new Intent(MainActivity.this, SavedNews.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.name:
+                intent = new Intent(MainActivity.this, NameSaver.class);
                 startActivity(intent);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 break;

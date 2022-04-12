@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
@@ -33,6 +34,8 @@ import java.util.HashMap;
 
 public class SearchTable extends AppCompatActivity {
 
+    private ProgressBar progressBar;
+
     private ListView listView;
 
     String NewsID, NewsSection, NewsTitle, NewsUrl, NewsDate;
@@ -48,6 +51,8 @@ public class SearchTable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_table);
 
+        progressBar = findViewById(R.id.progress_circular);
+
         setTitle("SearchTable 1.0");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,14 +64,14 @@ public class SearchTable extends AppCompatActivity {
         NewsList = new ArrayList<>();
         listView = findViewById(R.id.listview);
 
-        String fullURL = JSON_URL+value;
+        String fullURL = JSON_URL + value;
 
         GetData getData = new GetData();
         getData.execute(fullURL);
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -76,10 +81,10 @@ public class SearchTable extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             //what to do when the menu item is selected:
             case R.id.icon_search:
-                Intent intent=new Intent(SearchTable.this, MainActivity.class);
+                Intent intent = new Intent(SearchTable.this, MainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.help:
@@ -92,10 +97,20 @@ public class SearchTable extends AppCompatActivity {
         return true;
     }
 
-    public class GetData extends AsyncTask<String, String, String> {
+    public class GetData extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressBar.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected String doInBackground(String... strings) {
+
+            ProgressBar progressBar = findViewById(R.id.progress_circular);
+
             String current = "";
             try {
                 URL url;
@@ -111,9 +126,12 @@ public class SearchTable extends AppCompatActivity {
                     Log.d("tag", "input stream");
 
                     int data = inputStreamReader.read();
+
                     while (data != -1) {
                         current += (char) data;
                         data = inputStreamReader.read();
+
+                        publishProgress(1);
                     }
                     return current;
 
@@ -131,13 +149,12 @@ public class SearchTable extends AppCompatActivity {
             return current;
         }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
         @Override
         protected void onPostExecute(String s) {
+
+            progressBar.setVisibility(View.INVISIBLE);
+
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 JSONObject newsJsonResponse = jsonObject.getJSONObject("response");
@@ -198,7 +215,6 @@ public class SearchTable extends AppCompatActivity {
 
                     Intent intent = new Intent(SearchTable.this, SearchDetailedResult.class);
 
-
                     intent.putExtra("url", currentUrl);
                     intent.putExtra("title", currentTitle);
                     intent.putExtra("section", currentSection);
@@ -206,8 +222,6 @@ public class SearchTable extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
-
         }
     }
 }

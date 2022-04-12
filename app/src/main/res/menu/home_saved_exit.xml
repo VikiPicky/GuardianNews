@@ -14,6 +14,12 @@
         android:orderInCategory="2"
         android:icon="@drawable/list"/>
 
+    <item android:id="@+id/name"
+        app:showAsAction="never"
+        android:title="@string/name_saver"
+        android:orderInCategory="3"
+        android:icon="@drawable/name"/>
+
     <item android:id="@+id/item_exit"
         app:showAsAction="never"
         android:title="@string/exit"
