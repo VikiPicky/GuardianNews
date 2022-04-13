@@ -23,7 +23,7 @@ public class SavedNewsDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_news_details);
 
-        setTitle("SavedDetails 1.0");
+        setTitle("Guardian News");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,6 +84,10 @@ public class SavedNewsDetails extends AppCompatActivity {
                 alertDialog.setTitle((String) getString(R.string.dialog_title));
                 alertDialog.setMessage((String) getString(R.string.help_details_small));
                 alertDialog.create().show();
+                break;
+            case R.id.savedArticles:
+                intent = new Intent(SavedNewsDetails.this, SavedNews.class);
+                startActivity(intent);
                 break;
         }
         return true;

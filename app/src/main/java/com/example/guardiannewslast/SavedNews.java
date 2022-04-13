@@ -40,6 +40,8 @@ public class SavedNews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_news);
 
+        setTitle("Guardian News");
+
         listView = (ListView) findViewById(R.id.listview_saved_news);
         listView.setAdapter(news_items_Adapter = new MyTitleAdapter());
 
@@ -175,6 +177,10 @@ public class SavedNews extends AppCompatActivity {
                 alertDialog.setTitle((String) getString(R.string.dialog_title));
                 alertDialog.setMessage((String) getString(R.string.dialog_help_saved_news));
                 alertDialog.create().show();
+                break;
+            case R.id.savedArticles:
+                intent = new Intent(SavedNews.this, SavedNews.class);
+                startActivity(intent);
                 break;
         }
         return true;

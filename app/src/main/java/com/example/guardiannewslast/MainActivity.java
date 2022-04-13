@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setTitle("MainActivity 1.0");
+        setTitle("Guardian News");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        loadData();
+
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE);
+        String newName = sharedPreferences.getString("name", "");
+        String newGreeting = "Hi! I am " + newName + ". " + "Nice to meet you!";
+
+        TextView textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname);
+        textViewNewName.setText(newGreeting);
     }
 
     @Override
@@ -80,7 +93,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 alertDialog.setMessage((String) getString(R.string.help_main));
                 alertDialog.create().show();
                 break;
+            case R.id.savedArticles:
+                intent = new Intent(MainActivity.this, SavedNews.class);
+                startActivity(intent);
+                break;
         }
+
         return true;
     }
 

@@ -19,22 +19,20 @@ import android.widget.Toast;
 public class NameSaver extends AppCompatActivity {
 
     private TextView textViewNewName;
-    private TextView textViewGreeting;
     private EditText editText;
     private Button applyTextButton;
 
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String TEXT = "text";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_saver);
 
+        setTitle("Guardian News");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textViewGreeting = (TextView) findViewById(R.id.name_textview_greeting);
         textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname);
 
 
@@ -46,15 +44,16 @@ public class NameSaver extends AppCompatActivity {
             public void onClick(View view) {
                 String editTextValue = editText.getText().toString();
 
-                textViewGreeting.setVisibility(View.INVISIBLE);
-
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(TEXT, editTextValue);
-                editor.apply();
+                editor.putString("name", editTextValue);
+                editor.commit();
 
-                loadData();
                 editText.setText("");
+
+                Intent intent=new Intent(NameSaver.this,MainActivity.class);
+                intent.putExtra("name",editTextValue);
+                startActivity(intent);
 
                 Toast.makeText(NameSaver.this, R.string.name_saved, Toast.LENGTH_SHORT).show();
 
@@ -63,13 +62,7 @@ public class NameSaver extends AppCompatActivity {
         });
     }
 
-    public void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String newName = sharedPreferences.getString(TEXT, "");
-        String newGreeting = "Hi! I am " + newName + ". " + "Nice to meet you!";
-        textViewNewName.setText(newGreeting);
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,6 +86,10 @@ public class NameSaver extends AppCompatActivity {
                 alertDialog.setTitle((String) getString(R.string.dialog_title));
                 alertDialog.setMessage((String) getString(R.string.help_nameSaver));
                 alertDialog.create().show();
+                break;
+                case R.id.savedArticles:
+                intent = new Intent(NameSaver.this, SavedNews.class);
+                startActivity(intent);
                 break;
         }
         return true;

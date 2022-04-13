@@ -24,7 +24,7 @@ public class SearchDetailedResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detailed_result);
 
-        setTitle("DetailedResult 1.0");
+        setTitle("Guardian News");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -106,6 +106,10 @@ public class SearchDetailedResult extends AppCompatActivity {
                 alertDialog.setTitle((String) getString(R.string.dialog_title));
                 alertDialog.setMessage((String) getString(R.string.help_details));
                 alertDialog.create().show();
+                break;
+            case R.id.savedArticles:
+                intent = new Intent(SearchDetailedResult.this, SavedNews.class);
+                startActivity(intent);
                 break;
         }
         return true;

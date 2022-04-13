@@ -8,57 +8,46 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="396dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="71dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="102dp"
         android:elevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/name_textview_greeting"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/name_textview_greeting"
-        android:layout_width="221dp"
-        android:layout_height="79dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="22dp"
+        android:layout_width="222dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="66dp"
         android:text="@string/say_your_name"
         android:textAlignment="center"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/name_greetingWithNewname"
-        app:layout_constraintEnd_toEndOf="@+id/name_greetingWithNewname"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
-        android:id="@+id/name_greetingWithNewname"
-        android:layout_width="234dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="49dp"
         app:layout_constraintBottom_toTopOf="@+id/name_editview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_textview_greeting" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/name_editview"
         android:layout_width="181dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="72dp"
         app:layout_constraintBottom_toTopOf="@+id/name_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_greetingWithNewname" />
+        app:layout_constraintTop_toBottomOf="@+id/name_textview_greeting" />
 
     <Button
         android:id="@+id/name_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="278dp"
+        android:layout_marginBottom="87dp"
         android:text="@string/name_save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/name_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,11 +57,11 @@
         android:id="@+id/name_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="184dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
+        app:layout_constraintTop_toBottomOf="@+id/name_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

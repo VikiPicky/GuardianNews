@@ -53,7 +53,7 @@ public class SearchTable extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progress_circular);
 
-        setTitle("SearchTable 1.0");
+        setTitle("Guardian News");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,6 +92,10 @@ public class SearchTable extends AppCompatActivity {
                 alertDialog.setTitle((String) getString(R.string.dialog_title));
                 alertDialog.setMessage((String) getString(R.string.help_search_news));
                 alertDialog.create().show();
+                break;
+            case R.id.savedArticles:
+                intent = new Intent(SearchTable.this, SavedNews.class);
+                startActivity(intent);
                 break;
         }
         return true;
