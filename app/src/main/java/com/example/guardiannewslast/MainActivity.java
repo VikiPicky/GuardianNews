@@ -29,12 +29,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set title
         setTitle("Guardian News");
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);//add toolbar
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);//add DrawerNavigation
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -43,37 +44,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        EditText editText = (EditText) findViewById(R.id.home_editText);
-        Button button = (Button) findViewById(R.id.home_button);
+        EditText editText = (EditText) findViewById(R.id.home_editText);//intiate EditText for serach result
+
+        Button button = (Button) findViewById(R.id.home_button); //initiate button SAVE
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 editText.requestFocus();
                 editText.setSelection(0);
-                String value = editText.getText().toString().trim();
-                Intent intent = new Intent(MainActivity.this, SearchTable.class);
+                String value = editText.getText().toString().trim(); // get String value from EditText
+                Intent intent = new Intent(MainActivity.this, SearchTable.class); // handle data to SearchTable activity
                 intent.putExtra("search_key", value);
                 startActivity(intent);
-
             }
         });
         loadData();
-
     }
 
     public void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE); // Use SharedPreference to get String Name from NameSaver class
         String newName = sharedPreferences.getString("name", "");
-        String newGreeting = "Hi! I am " + newName + ". " + "Nice to meet you!";
+        String newGreeting = "Hi! I am " + newName + ". " + "Nice to meet you!"; // set new String with chosen Name
 
-        TextView textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname);
+        TextView textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname); // set Textview to use the newGreeting string
         textViewNewName.setText(newGreeting);
     }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
 
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getMenuInflater(); // inflate toolbar with menu
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
@@ -81,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()) {
-            //what to do when the menu item is selected:
+        switch(item.getItemId()) {  //what to do when the menu item is selected:
+
             case R.id.icon_search:
                 Intent intent=new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -98,14 +99,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
         }
-
         return true;
     }
 
     @Override
     public boolean onNavigationItemSelected (MenuItem item){
 
-        switch (item.getItemId()) {
+        switch (item.getItemId()) { // intents to go to other Activities in DrawerNavigation
             case R.id.item_Home:
                 Intent intent=new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);

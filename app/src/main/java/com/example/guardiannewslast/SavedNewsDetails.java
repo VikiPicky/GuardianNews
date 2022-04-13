@@ -23,24 +23,24 @@ public class SavedNewsDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_news_details);
 
-        setTitle("Guardian News");
+        setTitle("Guardian News");  // set title
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);  // add toolbar
         setSupportActionBar(toolbar);
 
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra("url");  // start intent and get data from SavedNews
         String title = getIntent().getStringExtra("title");
         String section = getIntent().getStringExtra("section");
         String date = getIntent().getStringExtra("date");
 
-        TextView textViewTitle = (TextView) findViewById(R.id.saved_textViewTitle);
+        TextView textViewTitle = (TextView) findViewById(R.id.saved_textViewTitle); // set textviews to received Strings from Intent
         textViewTitle.setText(title);
         TextView textViewSection = (TextView) findViewById(R.id.saved_textViewSection);
         textViewSection.setText(section);
         TextView textViewDate = (TextView) findViewById(R.id.saved_textViewDate);
         textViewDate.setText(date);
 
-        ImageButton buttonWeb = (ImageButton) findViewById(R.id.saved_btn_read_online);
+        ImageButton buttonWeb = (ImageButton) findViewById(R.id.saved_btn_read_online);  // on click open browser
         buttonWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,8 +50,7 @@ public class SavedNewsDetails extends AppCompatActivity {
             }
         });
 
-
-        ImageButton buttonClose = (ImageButton) findViewById(R.id.saved_icon_close);
+        ImageButton buttonClose = (ImageButton) findViewById(R.id.saved_icon_close); // on click close activity and return to previous
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,11 +58,10 @@ public class SavedNewsDetails extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) { // add menu
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -71,7 +69,7 @@ public class SavedNewsDetails extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { // add menu actions by selection
 
         switch (item.getItemId()) {
             //what to do when the menu item is selected:

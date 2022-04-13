@@ -30,28 +30,26 @@ import java.util.ArrayList;
 
 public class SavedNews extends AppCompatActivity {
 
-    private ListView listView;
-    private MyTitleAdapter news_items_Adapter;
-    private ArrayList<Article> news_items = new ArrayList<>();
-
+    private ListView listView;  // create listview variable
+    private MyTitleAdapter news_items_Adapter;  // create Adapter variable
+    private ArrayList<Article> news_items = new ArrayList<>();  //create new ArrayList variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_news);
 
-        setTitle("Guardian News");
+        setTitle("Guardian News"); // set title
 
-        listView = (ListView) findViewById(R.id.listview_saved_news);
-        listView.setAdapter(news_items_Adapter = new MyTitleAdapter());
+        listView = (ListView) findViewById(R.id.listview_saved_news); // initiate variable
+        listView.setAdapter(news_items_Adapter = new MyTitleAdapter()); // set adapter to listview
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // add toolbar
         setSupportActionBar(toolbar);
 
+        loadDataFromDatabase(); // method to load data previously saved in database
 
-        loadDataFromDatabase();
-
-        ContentValues newRowValues = new ContentValues();
+        ContentValues newRowValues = new ContentValues(); //get content of rows in database table
 
         String title = getIntent().getStringExtra("title");
         if (title != null) {
@@ -67,10 +65,10 @@ public class SavedNews extends AppCompatActivity {
             DatabaseOpener dbOpener = new DatabaseOpener(this);
             SQLiteDatabase sqLiteDatabase = dbOpener.getWritableDatabase();
             long newID = sqLiteDatabase.insert(DatabaseOpener.DATABASE_TABLE, null, newRowValues);
-            //create object
-            Article likedItem = new Article(newID, title, section, date, url);
 
-            news_items.add(likedItem);
+            Article likedItem = new Article(newID, title, section, date, url); //create object
+
+            news_items.add(likedItem);  // add object to arraylist
         }
         news_items_Adapter.notifyDataSetChanged();
 
@@ -84,13 +82,13 @@ public class SavedNews extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return news_items.size();
+            return news_items.size();   // find size of arrayList
         }
 
         @Override
         public Object getItem(int position) {
 
-            return news_items.get(position);
+            return news_items.get(position); ///find position clicked
         }
 
         @Override
@@ -99,7 +97,7 @@ public class SavedNews extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View old, ViewGroup parent) {
+        public View getView(int position, View old, ViewGroup parent) {  // inflate listview with row containing titile
 
             View newView = old;
             LayoutInflater inflater = getLayoutInflater();
@@ -107,15 +105,14 @@ public class SavedNews extends AppCompatActivity {
             if (newView == null) {
                 newView = inflater.inflate(R.layout.saved_news_textview_for_listview, parent, false);
             }
-            TextView textView = newView.findViewById(R.id.savedNews_TextViewforListView);
+            TextView textView = newView.findViewById(R.id.savedNews_TextViewforListView); ///
             textView.setText(news_items.get(position).getTitle());
             return newView;
         }
-
     }
 
     private void loadDataFromDatabase() {
-        DatabaseOpener dbOpener = new DatabaseOpener(this);
+        DatabaseOpener dbOpener = new DatabaseOpener(this);  /// open database created in DatabaseOpener and load data
         SQLiteDatabase sqLiteDatabase = dbOpener.getWritableDatabase();
 
         String[] columns = {DatabaseOpener.COLUMN_ID, DatabaseOpener.COLUMN_Title, DatabaseOpener.COLUMN_Section, DatabaseOpener.COLUMN_Date, DatabaseOpener.COLUMN_URL};
@@ -134,15 +131,12 @@ public class SavedNews extends AppCompatActivity {
             String section = results.getString(columnSection);
             String date = results.getString(columnDate);
             String url = results.getString(columnUrl);
-
-
             news_items.add(new Article(
                     id, title, section, date, url));
-
         }
     }
 
-    protected void deleteContact(Article article) {
+    protected void deleteContact(Article article) {  // delete contact from database
         DatabaseOpener dbOpener = new DatabaseOpener(this);
         SQLiteDatabase sqLiteDatabase = dbOpener.getWritableDatabase();
 
@@ -154,9 +148,8 @@ public class SavedNews extends AppCompatActivity {
         }
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {  // inflate toolbar with menu
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -164,7 +157,7 @@ public class SavedNews extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {  // set actions on toolbar items selected
 
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
@@ -187,7 +180,7 @@ public class SavedNews extends AppCompatActivity {
     }
 
     public void openDetails() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {   // on click create intent and send data to SavedNewsDetails class
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
@@ -197,27 +190,20 @@ public class SavedNews extends AppCompatActivity {
                 String url = selectedArticle.getUrl();
                 String date = selectedArticle.getDate();
 
-
                 Intent intent = new Intent(SavedNews.this, SavedNewsDetails.class);
-
                 intent.putExtra("url", url);
                 intent.putExtra("title", title);
                 intent.putExtra("section", section);
                 intent.putExtra("date", date);
                 startActivity(intent);
-
             }
         });
     }
 
-
-
-    //create dialog on ListView long click to remove article from DB
-
     public void dialogCall() {
-        listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemLongClickListener (new AdapterView.OnItemLongClickListener() {  // on LONGclick open Dialog to confirn if user wants to delete the selected item
             @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {//create dialog on ListView long click to remove article from DB
 
                Article selectedArticle = news_items.get(position);
                Article removedArticle = news_items.get(position);
@@ -229,24 +215,24 @@ public class SavedNews extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
 
-                        news_items.remove(position);
+                        news_items.remove(position);  // remove item from Array
 
-                        deleteContact(selectedArticle);
-                        news_items_Adapter.notifyDataSetChanged();
+                        deleteContact(selectedArticle);  // remove item from database
+                        news_items_Adapter.notifyDataSetChanged();  // update listview
 
-                        Snackbar.make(listView, R.string.snackbar_action, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_undo, new View.OnClickListener() {
+                        Snackbar.make(listView, R.string.snackbar_action, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_undo, new View.OnClickListener() {  // create Snackbar to cancel removal of items
                             @Override
                             public void onClick(View v)
                             {
-                                news_items.add(removedArticle);
-                                news_items_Adapter.notifyDataSetChanged();
+                                news_items.add(removedArticle);   // readd removed article
+                                news_items_Adapter.notifyDataSetChanged();  // update listview to add removed article
                                 Snackbar.make(listView, R.string.snackbar_restored, Snackbar.LENGTH_LONG).show();
                             }
                         }).show();
                     }
                 });
 
-                alertDialog.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {  // do nothing on close, item will be deleted permanently
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 

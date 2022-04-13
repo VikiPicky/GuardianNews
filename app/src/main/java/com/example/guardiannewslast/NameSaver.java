@@ -25,9 +25,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class NameSaver extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private TextView textViewNewName;
-    private EditText editText;
-    private Button applyTextButton;
+    private EditText editText;//declare edittext
+    private Button applyTextButton; //declare save Button
 
     private DrawerLayout drawerLayout;
 
@@ -37,12 +36,12 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_saver);
 
-        setTitle("Guardian News");
+        setTitle("Guardian News"); // set title
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);  //add toolbar
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);  // add Navigagtion Drawer
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -51,29 +50,26 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname);
-
-
-        editText = (EditText) findViewById(R.id.name_editview);
-        applyTextButton = (Button) findViewById(R.id.name_button);
+        editText = (EditText) findViewById(R.id.name_editview);  /// initiate edittext variable
+        applyTextButton = (Button) findViewById(R.id.name_button); /// initiate Save button variable
 
         applyTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String editTextValue = editText.getText().toString();
 
-                SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("MyNamePreferences", MODE_PRIVATE);  /// on Save button slick store item in SharedPreferences and open Intent to take data to MainActivity
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("name", editTextValue);
                 editor.commit();
 
-                editText.setText("");
+                editText.setText(""); // clear edittetx
 
-                Toast.makeText(NameSaver.this, R.string.name_saved, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NameSaver.this, R.string.name_saved, Toast.LENGTH_SHORT).show();  // show toast
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.name_fragment, new BlankFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.name_fragment, new BlankFragment()).commit();  // load fragment from BlankFragment with thanks.png
 
-                 Intent intent=new Intent(NameSaver.this,MainActivity.class);
+                Intent intent=new Intent(NameSaver.this,MainActivity.class);
                 intent.putExtra("name",editTextValue);
                 startActivity(intent);
             }
@@ -81,7 +77,7 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) {  // add menu
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -89,7 +85,7 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {  // add menu actions
 
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
@@ -112,7 +108,7 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
     }
 
     @Override
-    public boolean onNavigationItemSelected (MenuItem item){
+    public boolean onNavigationItemSelected (MenuItem item){  // add actions on Navigation Drawer
 
         switch (item.getItemId()) {
             case R.id.item_Home:

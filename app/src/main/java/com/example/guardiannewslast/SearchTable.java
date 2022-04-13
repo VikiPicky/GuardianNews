@@ -34,15 +34,13 @@ import java.util.HashMap;
 
 public class SearchTable extends AppCompatActivity {
 
-    private ProgressBar progressBar;
+    private ProgressBar progressBar; // declare progressbar
 
-    private ListView listView;
+    private ListView listView; // declare listView to display serach results
 
-    String NewsID, NewsSection, NewsTitle, NewsUrl, NewsDate;
+    String NewsID, NewsSection, NewsTitle, NewsUrl, NewsDate; //declare String to hold data from URL
 
-    private DrawerLayout drawerLayout;
-
-    private static String JSON_URL = "https://content.guardianapis.com/search?api-key=1fb36b70-1588-4259-b703-2570ea1fac6a&q=";
+    private static String JSON_URL = "https://content.guardianapis.com/search?api-key=1fb36b70-1588-4259-b703-2570ea1fac6a&q="; //declare and initiate standard part of the URL String
 
     ArrayList<HashMap<String, String>> NewsList;
 
@@ -51,20 +49,20 @@ public class SearchTable extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_table);
 
-        progressBar = findViewById(R.id.progress_circular);
+        progressBar = findViewById(R.id.progress_circular); // initiate progress bar for AsynkTask
 
-        setTitle("Guardian News");
+        setTitle("Guardian News");  //set page title
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // declare and initiate tollbar to the top
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
+        Intent intent = getIntent(); //declare intent to get SearchValue from MainActivity
         String value = getIntent().getStringExtra("search_key");
 
         NewsList = new ArrayList<>();
-        listView = findViewById(R.id.listview);
+        listView = findViewById(R.id.listview); // initiate ListView
 
-        String fullURL = JSON_URL + value;
+        String fullURL = JSON_URL + value; // form final string by compounding String from MainActivity and String JSON above
 
         GetData getData = new GetData();
         getData.execute(fullURL);
@@ -73,7 +71,7 @@ public class SearchTable extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getMenuInflater(); // inflate menu into toolbar
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
@@ -81,7 +79,7 @@ public class SearchTable extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
+        switch (item.getItemId()) { // declare intents to move between menu selections
             //what to do when the menu item is selected:
             case R.id.icon_search:
                 Intent intent = new Intent(SearchTable.this, MainActivity.class);
@@ -107,13 +105,12 @@ public class SearchTable extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressBar.setVisibility(View.VISIBLE);
+            ProgressBar progressBar = findViewById(R.id.progress_circular);
+            progressBar.setVisibility(View.VISIBLE);  //show progressbar
         }
 
         @Override
         protected String doInBackground(String... strings) {
-
-            ProgressBar progressBar = findViewById(R.id.progress_circular);
 
             String current = "";
             try {
@@ -153,11 +150,10 @@ public class SearchTable extends AppCompatActivity {
             return current;
         }
 
-
         @Override
         protected void onPostExecute(String s) {
 
-            progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);  // progressbar set visibity to hide as the data is downloaded
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
@@ -171,28 +167,27 @@ public class SearchTable extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    NewsID = jsonObject1.getString("id");
+                    NewsID = jsonObject1.getString("id"); // get JSON objects
                     NewsSection = jsonObject1.getString("sectionName");
                     NewsTitle = jsonObject1.getString("webTitle");
                     NewsUrl = jsonObject1.getString("webUrl");
                     NewsDate = jsonObject1.getString("webPublicationDate");
 
-                    HashMap<String, String> news = new HashMap<>();
+                    HashMap<String, String> news = new HashMap<>();  // add JSON objects into HashMap
                     news.put("id", NewsID);
                     news.put("sectionName", NewsSection);
                     news.put("webTitle", NewsTitle);
                     news.put("webUrl", NewsUrl);
                     news.put("webPublicationDate", NewsDate);
 
-                    NewsList.add(news);
+                    NewsList.add(news); // add HashMap into ArrayList
 
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            // display results to new layout with rows
-            ListAdapter adapter = new SimpleAdapter(
+            ListAdapter adapter = new SimpleAdapter(         // display results to ListView via rows in separate layout with SimpleAdapater
                     SearchTable.this,
                     NewsList,
                     R.layout.list_view_row_layout,
@@ -201,23 +196,20 @@ public class SearchTable extends AppCompatActivity {
 
             listView.setAdapter(adapter);
 
-
-            //OnClick event fot ListItems to date data to next activity
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {//OnClick event fot ListItems to take data to next activity and show more details about selection
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position,
                                         long id) {
 
                     ArrayList<HashMap<String, String>> tempList = new ArrayList<>();
-                    tempList.add(NewsList.get(position));
+                    tempList.add(NewsList.get(position)); // form temporary Array by selecting position clicked
 
-                    String currentUrl = NewsList.get(position).get("webUrl");
+                    String currentUrl = NewsList.get(position).get("webUrl");  //get Strings from ArrayList
                     String currentTitle = NewsList.get(position).get("webTitle");
                     String currentSection = NewsList.get(position).get("sectionName");
                     String currentDate = NewsList.get(position).get("webPublicationDate");
 
-                    Intent intent = new Intent(SearchTable.this, SearchDetailedResult.class);
+                    Intent intent = new Intent(SearchTable.this, SearchDetailedResult.class); // open intent to take data to SearchDetailedResult for processing
 
                     intent.putExtra("url", currentUrl);
                     intent.putExtra("title", currentTitle);

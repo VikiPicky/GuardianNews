@@ -17,36 +17,32 @@ import android.widget.TextView;
 
 public class SearchDetailedResult extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_detailed_result);
 
-        setTitle("Guardian News");
+        setTitle("Guardian News"); // set title
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // add tollbar
         setSupportActionBar(toolbar);
 
-
-        Intent intent = getIntent();
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra("url"); // get data with Intent from SearchTable.class
         String title = getIntent().getStringExtra("title");
         String section = getIntent().getStringExtra("section");
         String newdate = getIntent().getStringExtra("date");
-        String date = newdate.substring(0, 10);
+        String date = newdate.substring(0, 10); // trim date String
 
-        likeNews(url, title, section, date);
+        likeNews(url, title, section, date);  // parameterized method specified below to add Articles to favourites
 
-        TextView textViewTitle = (TextView) findViewById(R.id.textViewTitle);
+        TextView textViewTitle = (TextView) findViewById(R.id.textViewTitle);   // textview to display title
         textViewTitle.setText(title);
-        TextView textViewSection = (TextView) findViewById(R.id.textViewSection);
+        TextView textViewSection = (TextView) findViewById(R.id.textViewSection);// textview to display section
         textViewSection.setText(section);
-        TextView textViewDate = (TextView) findViewById(R.id.textViewDate);
+        TextView textViewDate = (TextView) findViewById(R.id.textViewDate); //// textview to display trimmed date
         textViewDate.setText(date);
 
-        ImageButton buttonWeb = (ImageButton) findViewById(R.id.btn_read_online);
+        ImageButton buttonWeb = (ImageButton) findViewById(R.id.btn_read_online);  // open built-in browser and open URL
         buttonWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,25 +52,21 @@ public class SearchDetailedResult extends AppCompatActivity {
             }
         });
 
-
-        ImageButton buttonClose = (ImageButton) findViewById(R.id.icon_close);
+        ImageButton buttonClose = (ImageButton) findViewById(R.id.icon_close); // press X to close activity and return to previous activity
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
-
     }
 
-    public void likeNews(String url, String title, String section, String date) {
+    public void likeNews(String url, String title, String section, String date) { // press HEART to create intent to send data to Saved News where it will be turened into object and added to database
         ImageButton buttonLike = (ImageButton) findViewById(R.id.icon_love);
         buttonLike.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
                 Intent intent = new Intent(SearchDetailedResult.this, SavedNews.class);
-
                 intent.putExtra("url", url);
                 intent.putExtra("title", title);
                 intent.putExtra("section", section);
