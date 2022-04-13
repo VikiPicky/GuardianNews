@@ -1,8 +1,12 @@
 package com.example.guardiannewslast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +20,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NameSaver extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
+
+public class NameSaver extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private TextView textViewNewName;
     private EditText editText;
     private Button applyTextButton;
+
+    private DrawerLayout drawerLayout;
 
 
     @Override
@@ -32,6 +40,15 @@ public class NameSaver extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         textViewNewName = (TextView) findViewById(R.id.name_greetingWithNewname);
 
@@ -93,5 +110,32 @@ public class NameSaver extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected (MenuItem item){
+
+        switch (item.getItemId()) {
+            case R.id.item_Home:
+                Intent intent=new Intent(NameSaver.this, MainActivity.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.item_saved:
+                intent = new Intent(NameSaver.this, SavedNews.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.name:
+                intent = new Intent(NameSaver.this, NameSaver.class);
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.item_exit:
+                finishAffinity();
+                System.exit(0);
+                break;
+        }
+        return false;
     }
 }
