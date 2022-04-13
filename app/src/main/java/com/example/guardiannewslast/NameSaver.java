@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -68,18 +69,16 @@ public class NameSaver extends AppCompatActivity implements NavigationView.OnNav
 
                 editText.setText("");
 
-                Intent intent=new Intent(NameSaver.this,MainActivity.class);
-                intent.putExtra("name",editTextValue);
-                startActivity(intent);
-
                 Toast.makeText(NameSaver.this, R.string.name_saved, Toast.LENGTH_SHORT).show();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.name_fragment, new BlankFragment()).commit();
+
+                 Intent intent=new Intent(NameSaver.this,MainActivity.class);
+                intent.putExtra("name",editTextValue);
+                startActivity(intent);
             }
         });
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
